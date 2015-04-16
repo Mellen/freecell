@@ -1,2 +1,23 @@
 <div class="play-area">
+    <table name="cells" id="cells">
+      <tr>
+	<td class="cell freecell"></td>
+	<td class="cell freecell"></td>
+	<td class="cell freecell"></td>
+	<td class="cell freecell"></td>
+	<td class="menu"><p><a href class="button" ng-click="board.newGame()">New Game</a></p></td>
+	<td class="cell homecell"></td>
+	<td class="cell homecell"></td>
+	<td class="cell homecell"></td>
+	<td class="cell homecell"></td>
+	<td></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+	<td class="card-column" ng-repeat="column in board.cards">
+	  <img class="card" ng-repeat="card in column" ng-src="{{card.imgURL}}"> 
+	</td>
+      </tr>
+    </table>
 </div>
