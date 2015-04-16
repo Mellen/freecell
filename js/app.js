@@ -14,4 +14,6 @@ window.onresize = setCellHeights;
 (function()
  {
      setCellHeights();
+     
+     var app = angular.module('freecell', ['freecell-deck']);
  })();

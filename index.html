@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="freecell">
   <head>
     <title>Free Cell</title>
     <link rel="stylesheet" href="css/index.css" type="text/css">
@@ -11,7 +11,7 @@
 	<td class="cell freecell"></td>
 	<td class="cell freecell"></td>
 	<td class="cell freecell"></td>
-	<td></td>
+	<td class="menu"><p><a href class="button">New Game</a></p></td>
 	<td class="cell homecell"></td>
 	<td class="cell homecell"></td>
 	<td class="cell homecell"></td>
@@ -19,7 +19,9 @@
 	<td></td>
       </tr>
     </table>
+    <play-area></play-area>
     <script src="js/angular.min.js" type="text/javascript"></script>
+    <script src="js/deck.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
   </body>
 </html>

@@ -13,6 +13,11 @@ td
     width:7.5%;
 }
 
+td.menu
+{
+    text-align:center;
+}
+
 .cell
 {
     border:1px dashed #fff; 
