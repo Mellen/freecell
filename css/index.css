@@ -1,0 +1,29 @@
+body
+{
+    background-color:#007d1e;
+}
+
+table
+{
+    width:100%;
+}
+
+td
+{
+    width:7.5%;
+}
+
+.cell
+{
+    border:1px dashed #fff; 
+}
+
+.homecell
+{
+    background-color:#004410;
+}
+
+.freecell
+{
+    background-color:#00b42b;
+}
