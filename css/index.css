@@ -32,3 +32,15 @@ td.menu
 {
     background-color:#00b42b;
 }
+
+td.card-column
+{
+    vertical-align:top;
+}
+
+img.card
+{
+    position:relative;
+    top:0;
+    left:0;
+}
