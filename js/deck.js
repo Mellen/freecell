@@ -51,7 +51,6 @@
 				       for(var place = 0; place < columnCounts[ci]; place++)
 				       {
 					   var card = this.createCard(shuffledDeck[sdi]);
-					   card.row = place+1;
 					   this.cards[ci].push(card);
 					   sdi++;
 				       }
