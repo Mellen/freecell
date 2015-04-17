@@ -17,6 +17,24 @@ function setCellHeights()
 
 window.onresize = setCellHeights;
 
+var observer = new MutationObserver(function(mutations) 
+				    {
+					mutations.forEach(function(mutation)
+							  {
+							      if(mutation.addedNodes.length > 0)
+							      {
+								  setCellHeights();
+							      }
+							  });
+				    });
+
+// configuration of the observer:
+var config = { attributes: false, childList: true, subtree: true, characterData: false };
+
+// pass in the target node, as well as the observer options
+observer.observe(document.body, config);
+
+
 (function()
  {   
      var app = angular.module('freecell', ['freecell-deck']);

@@ -51,6 +51,7 @@
 				       for(var place = 0; place < columnCounts[ci]; place++)
 				       {
 					   var card = this.createCard(shuffledDeck[sdi]);
+					   card.row = place+1;
 					   this.cards[ci].push(card);
 					   sdi++;
 				       }
@@ -68,18 +69,23 @@
 				   {
 				   case 'h':
 				       newCard.suit = 'hearts';
+				       newCard.colour = 'red';
 				       break;
 				   case 'c':
 				       newCard.suit = 'clubs';
+				       newCard.colour = 'black';
 				       break;
 				   case 'd':
 				       newCard.suit = 'diamonds';
+				       newCard.colour = 'red';
 				       break;
 				   case 's':
 				       newCard.suit = 'spades';
+				       newCard.colour = 'black';
 				       break;
 				   default:
 				       newCard.suit = 'error';
+				       newCard.colour = 'error';
 				   }
 
 				   if(Number.isNaN(Number.parseInt(value)))

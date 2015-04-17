@@ -40,7 +40,6 @@ td.card-column
 
 img.card
 {
-    position:relative;
-    top:0;
-    left:0;
+    border: 1px solid black;
+    margin-bottom:-90%;
 }

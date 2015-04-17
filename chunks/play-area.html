@@ -16,7 +16,7 @@
     <table>
       <tr>
 	<td class="card-column" ng-repeat="column in board.cards">
-	  <img class="card" ng-repeat="card in column" ng-src="{{card.imgURL}}"> 
+	  <img ng-alt="{{card.value + ' of ' + card.suit}}" class="card" ng-repeat="card in column" ng-src="{{card.imgURL}}"> 
 	</td>
       </tr>
     </table>
