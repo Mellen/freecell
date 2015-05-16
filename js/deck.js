@@ -119,7 +119,7 @@
 				   return newCard;
 			       };
 
-			       var startX = 0, startY = 0, x = 0, y = 0;
+			       var xOff = 0, yOff = 0;
 			       var floatingDiv = document.getElementById('floatingCards');
 
 			       this.selectCard = function(column, row, $event)
@@ -129,11 +129,13 @@
 				   if(row == (this.cards[column].length - 1))
 				   {
 				       this.cardToDrag = $event.target;
+				       xOff = this.cardToDrag.x - $event.pageX;
+				       yOff = this.cardToDrag.y - $event.pageY;
+				       var x = $event.pageX + xOff;
+				       var y = $event.pageY + yOff;
 				       this.cardToDrag.originalParent = this.cardToDrag.parentElement;
 				       floatingDiv.appendChild(this.cardToDrag.parentElement.removeChild(this.cardToDrag));
-				       floatingDiv.style='top:'+$event.pageY+'px;left:'+$event.pageX+'px';
-				       startX = $event.pageX - x;
-				       startY = $event.pageY - y;
+				       floatingDiv.style='top:'+y+'px;left:'+x+'px';
 				   }
 			       };
 
@@ -142,10 +144,9 @@
 				   $event.preventDefault();
 				   if(this.cardToDrag)
 				   {
-				       x = $event.pageX - startX;
-				       y = $event.pageY - startY;
-
-				       floatingDiv.style='top:'+$event.pageY+'px;left:'+$event.pageX+'px';
+				       var x = $event.pageX + xOff;
+				       var y = $event.pageY + yOff;
+				       floatingDiv.style='top:'+y+'px;left:'+x+'px';
 				   }
 			       };
 
