@@ -22,6 +22,8 @@
 
 			       this.newGame = function()
 			       {
+				   this.cardToDrag = null;
+
 				   this.initialState = '';
 				   this.history = [];
 				   this.cards = [[],[],[],[],[],[],[],[]];
@@ -51,6 +53,8 @@
 				       for(var place = 0; place < columnCounts[ci]; place++)
 				       {
 					   var card = this.createCard(shuffledDeck[sdi]);
+					   card.column = ci;
+					   card.row = place;
 					   this.cards[ci].push(card);
 					   sdi++;
 				       }
@@ -113,7 +117,47 @@
 				   }
 
 				   return newCard;
-			       }
+			       };
+
+			       var startX = 0, startY = 0, x = 0, y = 0;
+			       var floatingDiv = document.getElementById('floatingCards');
+
+			       this.selectCard = function(column, row, $event)
+			       {
+				   $event.preventDefault();
+				   this.cardToDrag = null;
+				   if(row == (this.cards[column].length - 1))
+				   {
+				       this.cardToDrag = $event.target;
+				       this.cardToDrag.originalParent = this.cardToDrag.parentElement;
+				       floatingDiv.appendChild(this.cardToDrag.parentElement.removeChild(this.cardToDrag));
+				       floatingDiv.style='top:'+$event.pageY+'px;left:'+$event.pageX+'px';
+				       startX = $event.pageX - x;
+				       startY = $event.pageY - y;
+				   }
+			       };
+
+			       this.moveCard = function($event)
+			       {
+				   $event.preventDefault();
+				   if(this.cardToDrag)
+				   {
+				       x = $event.pageX - startX;
+				       y = $event.pageY - startY;
+
+				       floatingDiv.style='top:'+$event.pageY+'px;left:'+$event.pageX+'px';
+				   }
+			       };
+
+			       this.dropCard = function($event)
+			       {
+				   $event.preventDefault();
+				   if(this.cardToDrag !== null)
+				   {
+				       this.cardToDrag.originalParent.appendChild(floatingDiv.removeChild(this.cardToDrag));
+				       this.cardToDrag = null;
+				   }
+			       };
 			   },
 			   controllerAs:'board'
 		       };

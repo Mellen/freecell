@@ -39,6 +39,6 @@ window.onresize = setCellHeights;
      // pass in the target node, as well as the observer options
      observer.observe(document.body, config);
 
-
      var app = angular.module('freecell', ['freecell-deck']);
+
  })();
