@@ -27,8 +27,11 @@ window.onresize = setCellHeights;
 								   if(mutation.addedNodes.length > 0)
 								   {
 								       var cell = document.querySelector('.cell');
-								       mutation.addedNodes[0].width = cell.clientWidth;
-								       mutation.addedNodes[0].height = cell.clientHeight;
+								       if(cell != null)
+								       {
+									   mutation.addedNodes[0].width = cell.clientWidth;
+									   mutation.addedNodes[0].height = cell.clientHeight;
+								       }
 								   }
 							       });
 					 });

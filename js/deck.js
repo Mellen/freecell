@@ -61,6 +61,28 @@
 				   }
 			       };
 
+			       this.createXRanges = function()
+			       {
+				   this.cellXRanges = {};
+
+				   var cells = document.querySelectorAll('.cell,.card-column');
+				   for(var cellIndex = 0; cellIndex < cells.length; cellIndex++)
+				   {
+				       var cell = cells[cellIndex];
+				       for(var xRangePos = cell.offsetLeft; xRangePos < cell.offsetLeft + cell.offsetWidth; xRangePos++)
+				       {
+					   if(this.cellXRanges[xRangePos])
+					   {
+					       this.cellXRanges[xRangePos].push(cell);
+					   }
+					   else
+					   {
+					       this.cellXRanges[xRangePos] = [cell];
+					   }
+				       }
+				   }
+			       }
+
 			       this.createCard = function(card)
 			       {
 				   var newCard = {imgURL:'cards/'+card.toLowerCase()+'.png'};
@@ -155,9 +177,39 @@
 				   $event.preventDefault();
 				   if(this.cardToDrag !== null)
 				   {
-				       this.cardToDrag.originalParent.appendChild(floatingDiv.removeChild(this.cardToDrag));
-				       this.cardToDrag = null;
+				       if(this.canPlaceSelection($event.pageX, $event.pageY))
+					  {
+					      
+					  }
+					  else
+					  {
+					      this.cardToDrag.originalParent.appendChild(floatingDiv.removeChild(this.cardToDrag));
+					      this.cardToDrag = null;
+					  }
 				   }
+			       };
+
+			       this.canPlaceSelection = function(x, y)
+			       {
+				   if(!this.cellXRanges)
+				   {
+				       this.createXRanges();
+				   }
+
+				   var cells = this.cellXRanges[x];
+				   var pickedCell = cells[0];
+				   if(cells.length > 1)
+				   {				       
+				       for(var cellIndex = 0; cellIndex < cells.length; cellIndex++)
+				       {
+					   var cell = cells[cellIndex];
+					   if(y > pickedCell.offsetParent.offsetTop && y > cell.offsetParent.offsetTop)
+					   {
+					       pickedCell = cell;
+					   }
+				       }
+				   }
+				   return false;
 			       };
 			   },
 			   controllerAs:'board'
