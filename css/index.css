@@ -43,8 +43,9 @@ td.card-column
     vertical-align:top;
 }
 
-img.card
+td.card-column img.card
 {
     border: 1px solid black;
     margin-bottom:-90%;
 }
+
