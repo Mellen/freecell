@@ -5,8 +5,6 @@
 	 return this.splice(Math.floor(Math.random() * this.length), 1)[0];
      };
 
-     var app = angular.module('freecell-deck', []);
-
      var suits = ['s', 'd', 'h', 'c'];
      var numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
      var columnCounts = [7,7,7,7,6,6,6,6];
