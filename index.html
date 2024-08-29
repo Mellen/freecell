@@ -7,7 +7,7 @@
   </head>
   <body>
     <div id="app">
-      {{ message }}
+      <img class="column1" v-for="card in game.table.1" :src="card+'.png'">
     </div>
     <script src="js/vue.global.js"></script>
     <script src="js/deck.js" type="text/javascript"></script>

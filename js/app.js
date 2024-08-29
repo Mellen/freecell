@@ -1,3 +1,16 @@
+const { createApp, ref } = Vue;
+
+createApp(
+    {
+	setup()
+	{
+	    const game = new Game()
+	    return { game };
+	}
+    }).mount('#app');
+
+
+
 function setCellHeights()
 {
     var cells = document.querySelectorAll('.cell');

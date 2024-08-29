@@ -1,4 +1,4 @@
-(function()
+const Game = (function()
  {
      Array.prototype.removeAtRandom = function()
      {
@@ -8,20 +8,45 @@
      var suits = ['s', 'd', 'h', 'c'];
      var numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
      var columnCounts = [7,7,7,7,6,6,6,6];
-
-     const { createApp, ref } = Vue;
-
-     createApp(
-	 {
-	     setup()
-	     {
-		 const message = ref('Hello, vue!');
-		 return { message };
-	     }
-	 }).mount('#app');
      
-     function game()
+     function Game()
      {
+	 this.availableMoves = 0
+	 this.table = [[],[],[],[],[],[],[],[]];
+	 this.moveHistory = [];
+	 let deck = suits.map(function(s)
+			      {
+				  return numbers.map(function(n)
+						     {
+							 return s+n;
+						     });
+			      }).reduce(function(a, b)
+					{
+					    return a.concat(b);
+					});
+	     
+	 let shuffledDeck = [];
+
+	 while(deck.length > 0)
+	 {
+	     shuffledDeck.push(deck.removeAtRandom());
+	 }
+
+	 let columnIndex = 0;
+	 while(shuffledDeck.length > 0)
+	 {
+	     let card = shuffledDeck.pop();
+
+	     this.table[columnIndex].push(card);
+
+	     columnIndex++;
+	     
+	     if(columnIndex >= this.table.length)
+	     {
+		 columnIndex = 0;
+	     }
+	 }
+	 
 	 setCellHeights();
 
 	 this.newGame = function()
@@ -31,23 +56,6 @@
 	     this.initialState = '';
 	     this.history = [];
 	     this.cards = [[],[],[],[],[],[],[],[]];
-	     var deck = suits.map(function(s)
-				  {
-				      return numbers.map(function(n)
-							 {
-							     return s+n;
-							 });
-				  }).reduce(function(a, b)
-					    {
-						return a.concat(b);
-					    });
-	     
-	     var shuffledDeck = [];
-
-	     while(deck.length > 0)
-	     {
-		 shuffledDeck.push(deck.removeAtRandom());
-	     }
 
 	     this.initialState = 
 		 {
@@ -265,4 +273,6 @@
 	 };
      }
 
+     return Game;
+     
 })();
