@@ -2,7 +2,7 @@ const { createApp, ref } = Vue;
 
 createApp(
     {
-	setup()
+	function setup()
 	{
 	    const game = new Game()
 	    return { game };
