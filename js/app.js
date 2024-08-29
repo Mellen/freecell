@@ -1,12 +1,12 @@
 const { createApp, ref } = Vue;
 
-createApp(
+const app = createApp(
     {
-	function setup()
+	this.setup = function ()
 	{
 	    const game = new Game()
 	    return { game };
-	}
+	};
     }).mount('#app');
 
 
