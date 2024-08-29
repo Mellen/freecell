@@ -7,11 +7,13 @@
   </head>
   <body>
     <div id="app">
-      <template v-for="column in game.table">
-	<template v-for="card in column">
-	  <img class="column1" :src="'cards/'+card+'.png'">
+      <div id="card-grid">
+	<template v-for="column in game.table">
+	  <template v-for="card in column">
+	    <img class="column1" :src="'cards/'+card+'.png'">
+	  </template>
 	</template>
-      </template>
+      </div>
     </div>
     <script src="js/vue.global.js"></script>
     <script src="js/deck.js" type="text/javascript"></script>

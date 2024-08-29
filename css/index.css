@@ -1,51 +1,5 @@
-#floatingCards
+#card-grid
 {
-    position:absolute;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
-
-body
-{
-    background-color:#007d1e;
-}
-
-table
-{
-    width:100%;
-}
-
-td
-{
-    width:7.5%;
-}
-
-td.menu
-{
-    text-align:center;
-}
-
-.cell
-{
-    border:1px dashed #fff; 
-}
-
-.homecell
-{
-    background-color:#004410;
-}
-
-.freecell
-{
-    background-color:#00b42b;
-}
-
-td.card-column
-{
-    vertical-align:top;
-}
-
-td.card-column img.card
-{
-    border: 1px solid black;
-    margin-bottom:-90%;
-}
-
