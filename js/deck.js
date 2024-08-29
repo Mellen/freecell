@@ -6,7 +6,7 @@ const Game = (function()
      };
 
      var suits = ['s', 'd', 'h', 'c'];
-     var numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+     var numbers = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
      var columnCounts = [7,7,7,7,6,6,6,6];
      
      function Game()

@@ -7,8 +7,10 @@
   </head>
   <body>
     <div id="app">
-      <template v-for="card in game.table.1">
-	<img class="column1" :src="card+'.png'">
+      <template v-for="column in game.table">
+	<template v-for="card in column">
+	  <img class="column1" :src="'cards/'+card+'.png'">
+	</template>
       </template>
     </div>
     <script src="js/vue.global.js"></script>
