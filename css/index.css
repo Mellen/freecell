@@ -1,5 +1,17 @@
+body
+{
+    background-color:#007d1e;
+}
+
+
 #card-grid
 {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+img
+{
+    border: 2px solid black;
+    border-radius: 8px;
 }
