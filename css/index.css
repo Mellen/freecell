@@ -12,14 +12,9 @@ body
 
 img
 {
-    height: 20%;
+    height: 100%;
     width: 75%;
     border: 2px solid black;
     border-radius: 8px;
-}
-
-img.last
-{
-    height: 100%;
 }
 
