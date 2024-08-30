@@ -9,7 +9,7 @@ const app = createApp(
 	    {
 		let cls = ''
 		let isLast = game.isLastInColumn(card, rowi);
-		let columnClass = 'column'+game.getColumnIndex(card, rowi)+1;
+		let columnClass = 'column'+(game.getColumnIndex(card, rowi)+1);
 
 		if(isLast)
 		{
