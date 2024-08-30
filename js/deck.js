@@ -69,9 +69,9 @@ const Game = (function()
 
 	 for(let column of this.table)
 	 {
-	     if(column.length > rowNumber)
+	     if(column.length > rowNumber-1)
 	     {
-		 result.push(column[rowNumber])
+		 result.push(column[rowNumber-1])
 	     }
 	     else
 	     {
