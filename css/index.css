@@ -23,11 +23,6 @@ div.card
     margin-bottom:-87%;
 }
 
-div.column0
-{
-    grid-column: 0;
-}
-
 div.column1
 {
     grid-column: 1;
@@ -61,4 +56,9 @@ div.column6
 div.column7
 {
     grid-column: 7;
+}
+
+div.column8
+{
+    grid-column: 8;
 }
