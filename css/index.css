@@ -18,3 +18,12 @@ img
     border-radius: 8px;
 }
 
+img.column
+{
+    margin-bottom: -100px;
+}
+
+img.column.last
+{
+    margin-bottom: 0;
+}
