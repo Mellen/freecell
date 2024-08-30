@@ -5,7 +5,7 @@ const app = createApp(
 	setup()
 	{
 	    const game = reactive(new Game());
-	    function cardClass()
+	    function cardClass(card, rowi)
 	    {
 		let cls = ''
 		let isLast = game.isLastInColumn(card, rowi);
