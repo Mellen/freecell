@@ -20,10 +20,12 @@ img
 
 div
 {
-    margin-bottom:-90%;
+    margin-bottom:-87%;
+    grid-row:span 2;
 }
 
 div.last
 {
     margin-bottom: 0;
+    grid-row: span 1;
 }
