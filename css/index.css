@@ -16,14 +16,10 @@ img
     width: 75%;
     border: 2px solid black;
     border-radius: 8px;
-}
-
-img.column
-{
     margin-bottom: -100px;
 }
 
-img.column.last
+img.last
 {
     margin-bottom: 0;
 }
