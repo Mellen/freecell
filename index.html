@@ -8,7 +8,12 @@
   <body>
     <div id="app">
       <div id="card-grid">
-	<img :src="'cards/'+game.table[0][0]+'.png'">
+	<template v-for="rowi in game.getLargestColumnCount()">
+	  <template v-for="card in game.getRow(rowi)">
+	    <img v-if="card != ''" :src="'cards/'+card+'.png'">
+	  </template>
+	</template>
+<!--	<img :src="'cards/'+game.table[0][0]+'.png'">
 	<img :src="'cards/'+game.table[1][0]+'.png'">
 	<img :src="'cards/'+game.table[2][0]+'.png'">
 	<img :src="'cards/'+game.table[3][0]+'.png'">
@@ -59,7 +64,7 @@
 	<img :src="'cards/'+game.table[0][6]+'.png'">
 	<img :src="'cards/'+game.table[1][6]+'.png'">
 	<img :src="'cards/'+game.table[2][6]+'.png'">
-	<img :src="'cards/'+game.table[3][6]+'.png'">
+	<img :src="'cards/'+game.table[3][6]+'.png'">-->
       </div>
     </div>
     <script src="js/vue.global.js"></script>

@@ -13,7 +13,7 @@ const app = createApp(
 
 
 
-function setCellHeights()
+/*function setCellHeights()
 {
     var cells = document.querySelectorAll('.cell');
     if(cells.length > 0)
@@ -33,7 +33,7 @@ function setCellHeights()
     }
 }
 
-window.onresize = setCellHeights;
+window.onresize = setCellHeights;*/
 
 (function()
  {   
