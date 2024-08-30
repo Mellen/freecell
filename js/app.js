@@ -1,13 +1,30 @@
-const { createApp, ref } = Vue;
+const { createApp, ref, reactive } = Vue;
 
 const app = createApp(
     {
 	setup()
 	{
-	    const game = new Game();
+	    const game = reactive(new Game());
+	    function cardClass()
+	    {
+		let cls = ''
+		let isLast = game.isLastInColumn(card, rowi);
+		let columnClass = 'column'+game.getColumnIndex(card, rowi);
+
+		if(isLast)
+		{
+		    cls = 'last ';
+		}
+
+		cls += columnClass;
+
+		return cls;
+	    }
 	    return {
-		game
+		game,
+		cardClass
 	    };
 	}
+	
     }).mount('#app');
 

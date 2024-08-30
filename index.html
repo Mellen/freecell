@@ -9,8 +9,8 @@
     <div id="app">
       <div id="card-grid">
 	<template v-for="rowi in game.getLargestColumnCount()">
-	  <template v-for="card in game.getRow(rowi)">
-	    <img v-if="card != ''" :row="rowi" :src="'cards/'+card+'.png'">
+	  <template v-for="card in game.getRow(rowi-1)">
+	    <img v-if="card != ''" :class="cardClass(card, rowi-1)" :src="'cards/'+card+'.png'">
 	  </template>
 	</template>
       </div>
