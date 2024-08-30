@@ -60,7 +60,7 @@ const Game = (function()
 	     }
 	 }
 
-	 return column;
+	 return count;
      };
      
      Game.prototype.getRow = function(rowNumber)
