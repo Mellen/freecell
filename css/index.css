@@ -31,6 +31,12 @@ div.freecell img
 div.freecell.column4
 {
     border-right: 2px solid grey;
+    margin-right: 11%
+}
+
+div.freecell.column4 img
+{
+    width: 86%;
 }
 
 div.card
