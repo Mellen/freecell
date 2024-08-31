@@ -21,7 +21,11 @@ img
 div.freecell
 {
     margin-bottom: 1em;
-    border: 3px solid white;
+}
+
+div.freecell img
+{
+    border: 2px solid white;
 }
 
 div.card
