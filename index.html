@@ -8,17 +8,17 @@
   <body>
     <div id="app">
       <div id="card-grid">
-	<div class="column1">
-	  <img class="freecell" :src="getFreecell(0)">
+	<div class="column1 freecell">
+	  <img :src="getFreecell(0)">
 	</div>
-	<div class="column2">
-	  <img class="freecell" :src="getFreecell(1)">
+	<div class="column2 freecell">
+	  <img :src="getFreecell(1)">
 	</div>
-	<div class="column3">
-	  <img class="freecell" :src="getFreecell(2)">
+	<div class="column3 freecell">
+	  <img :src="getFreecell(2)">
 	</div>
-	<div class="column4">
-	  <img class="freecell" :src="getFreecell(3)">
+	<div class="column4 freecell">
+	  <img :src="getFreecell(3)">
 	</div>
 	
 	<template v-for="rowi in game.getLargestColumnCount()">
