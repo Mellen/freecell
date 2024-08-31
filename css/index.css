@@ -28,6 +28,11 @@ div.freecell img
     border: 2px solid white;
 }
 
+div.freecell.column4
+{
+    border-right: 2px solid grey;
+}
+
 div.card
 {
     margin-bottom:-87%;
