@@ -31,10 +31,22 @@ const app = createApp(
 		    return `cards/${game.freecells[index]}.png`;
 		}
 	    }
+	    function getHome(index)
+	    {
+		if(game.home[index].length == 0)
+		{
+		    return 'cards/blank.png';
+		}
+		else
+		{
+		    return `cards/${game.home[index].at(-1)}.png`;
+		}
+	    }
 	    return {
 		game,
 		cardClass,
-		getFreecell
+		getFreecell,
+		getHome
 	    };
 	}
 	

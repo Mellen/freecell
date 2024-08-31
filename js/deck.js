@@ -15,6 +15,7 @@ const Game = (function()
 	 this.table = [[],[],[],[],[],[],[],[]];
 	 this.moveHistory = [];
 	 this.freecells = ['','','',''];
+	 this.home = [[],[],[],[]]
 	 let deck = suits.map(function(s)
 			      {
 				  return numbers.map(function(n)
