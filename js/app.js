@@ -20,9 +20,21 @@ const app = createApp(
 
 		return cls;
 	    }
+	    function getFreecell(index)
+	    {
+		if(game.freecells[index] == '')
+		{
+		    return 'cards/blank.png';
+		}
+		else
+		{
+		    return `cards/${game.freecells[index]}.png`;
+		}
+	    }
 	    return {
 		game,
-		cardClass
+		cardClass,
+		getFreecell
 	    };
 	}
 	

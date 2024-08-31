@@ -8,6 +8,19 @@
   <body>
     <div id="app">
       <div id="card-grid">
+	<div class="column1">
+	  <img class="freecell" :src="getFreecell(0)">
+	</div>
+	<div class="column2">
+	  <img class="freecell" :src="getFreecell(1)">
+	</div>
+	<div class="column3">
+	  <img class="freecell" :src="getFreecell(2)">
+	</div>
+	<div class="column4">
+	  <img class="freecell" :src="getFreecell(3)">
+	</div>
+	
 	<template v-for="rowi in game.getLargestColumnCount()">
 	  <template v-for="card in game.getRow(rowi-1)">
 	    <div v-if="card != ''" :class="'card '+cardClass(card, rowi-1)">
