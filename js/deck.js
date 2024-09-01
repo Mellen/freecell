@@ -6,7 +6,7 @@ const Game = (function()
      };
 
      const suits = ['s', 'd', 'h', 'c'];
-     const suitColours = {'s': 'black', 'd': 'red', 'h': 'red': 'c': 'black'};
+     const suitColours = {'s': 'black', 'd': 'red', 'h': 'red', 'c': 'black'};
      const numbers = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
      
      function Game()
