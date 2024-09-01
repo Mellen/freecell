@@ -38,7 +38,7 @@
 	      <img src="cards/blank.png" >
 	    </div>
 	    <div v-if-else="game.table[cardi-1][rowi] != ''" :class="'card '+cardClass(cardi-1, rowi-1)">
-	      <img :src="'cards/'+card+'.png'">
+	      <img :src="'cards/'+game.table[cardi-1][rowi]+'.png'">
 	    </div>
 	  </template>
 	</template>
