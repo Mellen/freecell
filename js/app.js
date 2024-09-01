@@ -25,6 +25,10 @@ const app = createApp(
 
 		return cls;
 	    }
+	    function freecellExtraClasses(cellIndex)
+	    {
+		return game.freecellSelected(cellIndex) ? 'selected' : '';
+	    }
 	    function getFreecell(index)
 	    {
 		if(game.freecells[index] == '')
@@ -51,7 +55,8 @@ const app = createApp(
 		game,
 		cardClass,
 		getFreecell,
-		getHome
+		getHome,
+		freecellExtraClasses
 	    };
 	}
 	

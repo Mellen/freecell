@@ -19,6 +19,7 @@ const Game = (function()
 	 this.selectedFreecell = -1;
 	 this.selectedColumn = -1;
 	 this.selectedRows = [];
+	 this.playerHasWon = false;
 	 let deck = suits.map(function(s)
 			      {
 				  return numbers.map(function(n)
@@ -106,8 +107,42 @@ const Game = (function()
 
      Game.prototype.freecellSelected = function(cellIndex)
      {
-	 return cellIndex == this.selectedFreecell ? 'selected' : '';
+	 return cellIndex == this.selectedFreecell;
      };
+
+     Game.prototype.dropHome = function(cellIndex)
+     {
+	 if(this.selectedRows.length == 1 && this.selectedColumn != -1)
+	 {
+	     const card = this.table[this.selectedColumn][this.selectedRows[0]];
+	     let dropped = false;
+	     if(this.home[cellIndex].length == 0 && card[1] == 'a')
+	     {
+		 this.home.cellIndex.push(this.table[this.selectedColumn].pop())
+		 dropped = true;
+	     }
+	     else if(this.home[cellIndex].length > 0 &&
+		     this.isDestinationSuitAndValueValid(card,this.home[cellIndex].at(-1)))
+	     {
+		 this.home.cellIndex.push(this.table[this.selectedColumn].pop())
+		 dropped = true;
+	     }
+
+	     if(dropped)
+	     {
+		 this.checkWin();
+	     }
+	 }
+
+	 this.selectedRows = [];
+	 this.selectedColumn = -1;
+     };
+
+     Game.prototype.checkWin = function()
+     {
+	 let homeCount = this.home[0].length + this.home[1].length + this.home[2].length + this.home[3].length;
+	 this.playerHasWon = homeCount == 52;
+     }
      
      Game.prototype.selectDropFreecell = function(cellIndex)
      {
