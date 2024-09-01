@@ -21,16 +21,16 @@
 	  <img :src="getFreecell(3)" @click="game.selectDropFreecell(3)">
 	</div>
 	<div class="column5 freecell">
-	  <img :src="getHome(0)">
+	  <img :src="getHome(0)" @click="game.dropHome(0)">
 	</div>
 	<div class="column6 freecell">
-	  <img :src="getHome(1)">
+	  <img :src="getHome(1)" @click="game.dropHome(1)">
 	</div>
 	<div class="column7 freecell">
-	  <img :src="getHome(2)">
+	  <img :src="getHome(2)" @click="game.dropHome(2)">
 	</div>
 	<div class="column8 freecell">
-	  <img :src="getHome(3)">
+	  <img :src="getHome(3)" @click="game.dropHome(3)">
 	</div>	
 	<template v-for="rowi in game.getLargestColumnCount()">
 	  <template v-for="coli in game.table.length">
