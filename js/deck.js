@@ -124,7 +124,7 @@ const Game = (function()
 	     }
 	     else if(this.home[cellIndex].length > 0 &&
 		     card[0] == homecard[0] &&
-		     (number.indexOf(card.substring(1)) - number.indexOf(homecard.substring(1))) == 1)
+		     (numbers.indexOf(card.substring(1)) - numbers.indexOf(homecard.substring(1))) == 1)
 	     {
 		 this.home.cellIndex.push(this.table[this.selectedColumn].pop())
 		 dropped = true;
