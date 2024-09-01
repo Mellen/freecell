@@ -74,6 +74,8 @@ const Game = (function()
 	     card = this.table[coli][rowi];
 	 }
 
+	 console.log(`card: "${card}"`);
+	 
 	 return card;
      };
      
