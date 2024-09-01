@@ -142,7 +142,8 @@ const Game = (function()
 	 }
 	 else if(this.selectedFreecell != -1)
 	 {
-	     if(this.isDestinationSuitAndValueValid(this.freecells[this.selectedFreecell], this.table[coli].at(-1)))
+	     if(this.table[coli].length == 0 ||
+		this.isDestinationSuitAndValueValid(this.freecells[this.selectedFreecell], this.table[coli].at(-1)))
 	     {
 		 this.table[coli].push(this.freecells[this.selectedFreecell]);
 		 this.freecells[this.selectedFreecell] = '';

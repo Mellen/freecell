@@ -8,16 +8,16 @@
   <body>
     <div id="app">
       <div id="card-grid">
-	<div class="column1 freecell">
+	<div :class="'column1 freecell ' + game.freecellSelected(0)">
 	  <img :src="getFreecell(0)" @click="game.selectDropFreecell(0)">
 	</div>
-	<div class="column2 freecell" :class="game.freecellSelected(1)">
+	<div :class="'column2 freecell ' + game.freecellSelected(1)">
 	  <img :src="getFreecell(1)" @click="game.selectDropFreecell(1)">
 	</div>
-	<div class="column3 freecell">
+	<div :class="'column3 freecell ' + game.freecellSelected(2)">
 	  <img :src="getFreecell(2)" @click="game.selectDropFreecell(2)">
 	</div>
-	<div class="column4 freecell">
+	<div :class="'column4 freecell ' + game.freecellSelected(3)">
 	  <img :src="getFreecell(3)" @click="game.selectDropFreecell(3)">
 	</div>
 	<div class="column5 freecell">
