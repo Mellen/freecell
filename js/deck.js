@@ -219,7 +219,6 @@ const Game = (function()
 	 {
 	     if(this.cardCanBeSelected(coli, rowi))
 	     {
-		 this.moveHistory.push(history);
 		 this.selectedColumn = coli;
 		 this.selectedRows = [];
 		 for(let includedRow = rowi; includedRow < this.table[coli].length; includedRow++)
