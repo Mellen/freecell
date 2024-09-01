@@ -65,36 +65,9 @@ const Game = (function()
 	 return count;
      };
 
-     Game.prototype.getColumnIndex = function(card, rowi)
+     Game.prototype.isLastInColumn = function(cardi, rowi)
      {
-	 let coli = -1;
-
-	 for(let curcoli = 0; curcoli < this.table.length; curcoli++)
-	 {
-	     if(this.table[curcoli][rowi] == card)
-	     {
-		 coli = curcoli;
-		 break;
-	     }
-	 }
-
-	 return coli;
-     };
-
-     Game.prototype.isLastInColumn = function(card, rowi)
-     {
-	 let coli = -1;
-
-	 for(let curcoli = 0; curcoli < this.table.length; curcoli++)
-	 {
-	     if(this.table[curcoli][rowi] == card)
-	     {
-		 coli = curcoli;
-		 break;
-	     }
-	 }
-
-	 return (this.table[coli].length - 1 == rowi);
+	 return (this.table[cardi].length - 1 == rowi);
      };
      
      Game.prototype.getRow = function(rowNumber)

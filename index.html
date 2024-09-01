@@ -33,8 +33,11 @@
 	  <img :src="getHome(3)">
 	</div>	
 	<template v-for="rowi in game.getLargestColumnCount()">
-	  <template v-for="card in game.getRow(rowi-1)">
-	    <div v-if="card != ''" :class="'card '+cardClass(card, rowi-1)">
+	  <template v-for="cardi in game.table.length">
+	    <div v-if="game.table[cardi].length == 0" :class="'column'+cardi+' freecell'">
+	      <img src="cards/blank.png" >
+	    </div>
+	    <div v-if-else="game.table[cardi][rowi] != ''" :class="'card '+cardClass(cardi-1, rowi-1)">
 	      <img :src="'cards/'+card+'.png'">
 	    </div>
 	  </template>

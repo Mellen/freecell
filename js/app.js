@@ -5,11 +5,11 @@ const app = createApp(
 	setup()
 	{
 	    const game = reactive(new Game());
-	    function cardClass(card, rowi)
+	    function cardClass(cardi, rowi)
 	    {
 		let cls = ''
-		let isLast = game.isLastInColumn(card, rowi);
-		let columnClass = 'column'+(game.getColumnIndex(card, rowi)+1);
+		let isLast = game.isLastInColumn(cardi, rowi);
+		let columnClass = 'column'+(cardi+1);
 
 		if(isLast)
 		{
