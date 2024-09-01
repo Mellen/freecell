@@ -153,6 +153,18 @@ const Game = (function()
 
      Game.prototype.cardsCanBeDropped = function(coli)
      {
+	 if(this.table[coli].length == 0)
+	 {
+	     if(this.getMaxMovableStackLength(coli) >= this.selectedRows.length)
+	     {
+		 return true;
+	     }
+	     else
+	     {
+		 return false;
+	     }
+	 }
+	 
 	 let destsuit = this.table[coli].at(-1)[0];
 	 let destvalue = this.table[coli].at(-1).substring(1);
 
@@ -169,8 +181,34 @@ const Game = (function()
 	     return false;
 	 }
 
+	 if(this.selectedRows.length <= 1 || this.getMaxMovableStackLength(coli) < this.selectedRows.length)
+	 {
+	     return false;
+	 }
+
 	 return true;
-     }
+     };
+
+     Game.prototype.getMaxMovableStackLength = function(coli)
+     {
+	 const freecellCount = this.freecells.reduce((acc,cell) => cell == '' ? acc+1:acc, 0);
+	 let moveableLength = 1 + freecellCount;
+
+	 for(let curColi = 0; curColi < this.table.length; curColi++)
+	 {
+	     if(curColi == coli)
+	     {
+		 continue;
+	     }
+
+	     if(this.table[curColi].length == 0)
+	     {
+		 moveableLength += freecellCount;
+	     }
+	 }
+	 
+	 return moveableLength;
+     };
 
      Game.prototype.cardCanBeSelected = function(coli, rowi)
      {
@@ -202,7 +240,7 @@ const Game = (function()
 	     }
 	     return true;
 	 }
-     }
+     };
 
      return Game;
      
