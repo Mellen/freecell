@@ -217,7 +217,7 @@ const Game = (function()
 	 return true;
      };
 
-     Game.prototype.isDestinationSuitAndValueValid(srcCard, destCard)
+     Game.prototype.isDestinationSuitAndValueValid = function(srcCard, destCard)
      {
  	 let destsuit = destCard[0];
 	 let destvalue = destCard.substring(1);
@@ -236,7 +236,7 @@ const Game = (function()
 	 }
 
 	 return true;
-     }
+     };
      
      Game.prototype.getMaxMovableStackLength = function(coli)
      {
