@@ -64,6 +64,8 @@ const Game = (function()
 	     this.home = history.home;
 	     this.freecells = history.freecells;
 	 }
+	 this.selectedRows = [];
+	 this.selectedColumn = -1;
      }
 
      Game.prototype.getLargestColumnCount = function()
