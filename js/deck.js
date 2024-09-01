@@ -181,7 +181,7 @@ const Game = (function()
 	     return false;
 	 }
 
-	 if(this.selectedRows.length <= 1 || this.getMaxMovableStackLength(coli) < this.selectedRows.length)
+	 if(this.selectedRows.length > 1 && this.getMaxMovableStackLength(coli) < this.selectedRows.length)
 	 {
 	     return false;
 	 }
