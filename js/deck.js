@@ -164,7 +164,7 @@ const Game = (function()
 	     return false;
 	 }
 
-	 if(numbers.indexOf(destvalue) - numbers.indexOf(srcsuit) != 1)
+	 if(numbers.indexOf(destvalue) - numbers.indexOf(srcvalue) != 1)
 	 {
 	     return false;
 	 }
