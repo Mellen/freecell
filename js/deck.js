@@ -103,7 +103,7 @@ const Game = (function()
 	 return result;
      };
 
-     Game.prototype selectDropClear = function(coli, rowi)
+     Game.prototype.selectDropClear = function(coli, rowi)
      {
 	 if(this.selectedColumn == coli && this.selectedRows.includes(rowi))
 	 {
