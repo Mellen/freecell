@@ -118,7 +118,7 @@ const Game = (function()
 	     let dropped = false;
 	     if(this.home[cellIndex].length == 0 && card[1] == 'a')
 	     {
-		 this.home.cellIndex.push(this.table[this.selectedColumn].pop())
+		 this.home[cellIndex].push(this.table[this.selectedColumn].pop())
 		 dropped = true;
 	     }
 	     else if(this.home[cellIndex].length > 0 &&
