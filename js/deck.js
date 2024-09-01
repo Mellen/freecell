@@ -106,7 +106,7 @@ const Game = (function()
 
      Game.prototype.freecellSelected = function(cellIndex)
      {
-	 return cellIndex == this.selectedFreecell;
+	 return cellIndex == this.selectedFreecell ? 'selected' : '';
      };
      
      Game.prototype.selectDropFreecell = function(cellIndex)
