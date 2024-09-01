@@ -128,7 +128,38 @@ const Game = (function()
 		 this.selectedRows = [];
 	     }
 	 }
+	 else
+	 {
+	     if(this.selectedRows.length > 0
+		&& this.selectedColumn > -1
+		&& this.cardsCanBeDropped(coli))
+	     {
+		 
+	     }
+
+	     this.selectedColumn = -1;
+	     this.selectedRows = [];
+	 }
      };
+
+     Game.prototype.cardsCanBeDropped = function(coli)
+     {
+	 let destsuit = this.table[coli].at(-1)[0];
+	 let destvalue = this.table[coli].at(-1).substring(1);
+
+	 let srcsuit = this.table[this.selectedColumn][this.selectedRows[0]][0]
+	 let srcvalue = this.table[this.selectedColumn][this.selectedRows[0]].substring(1);
+
+	 if(suitColours[destsuit] == suitColours[srcsuit])
+	 {
+	     return false;
+	 }
+
+	 if(numbers.indexOf(destvalue) - numbers.indexOf(srcsuit) != 1)
+	 {
+	     return false;
+	 }
+     }
 
      Game.prototype.cardCanBeSelected = function(coli, rowi)
      {
