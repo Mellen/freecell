@@ -16,6 +16,11 @@ const app = createApp(
 		    cls = 'last ';
 		}
 
+		if(game.selectedColumn == cardi && game.selectedRows.includes(rowi))
+		{
+		    cls += 'selected ';
+		}
+
 		cls += columnClass;
 
 		return cls;

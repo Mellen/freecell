@@ -83,3 +83,8 @@ div.column8
 {
     grid-column: 8;
 }
+
+div.selected img
+{
+    box-shadow: 4px 4px cyan, -4px -4px cyan;
+}

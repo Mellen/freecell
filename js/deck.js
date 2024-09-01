@@ -5,9 +5,9 @@ const Game = (function()
 	 return this.splice(Math.floor(Math.random() * this.length), 1)[0];
      };
 
-     var suits = ['s', 'd', 'h', 'c'];
-     var numbers = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
-     var columnCounts = [7,7,7,7,6,6,6,6];
+     const suits = ['s', 'd', 'h', 'c'];
+     const suitColours = {'s': 'black', 'd': 'red', 'h': 'red': 'c': 'black'};
+     const numbers = ['a', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k'];
      
      function Game()
      {
@@ -16,6 +16,8 @@ const Game = (function()
 	 this.moveHistory = [];
 	 this.freecells = ['','','',''];
 	 this.home = [[],[],[],[]]
+	 this.selectedColumn = -1;
+	 this.selectedRows = [];
 	 let deck = suits.map(function(s)
 			      {
 				  return numbers.map(function(n)
@@ -77,9 +79,9 @@ const Game = (function()
 	 return card;
      };
      
-     Game.prototype.isLastInColumn = function(cardi, rowi)
+     Game.prototype.isLastInColumn = function(coli, rowi)
      {
-	 return (this.table[cardi].length - 1 == rowi);
+	 return (this.table[coli].length - 1 == rowi);
      };
      
      Game.prototype.getRow = function(rowNumber)
@@ -97,9 +99,65 @@ const Game = (function()
 		 result.push('');
 	     }
 	 }
-	 
+
 	 return result;
-     };     
+     };
+
+     Game.prototype selectDropClear = function(coli, rowi)
+     {
+	 if(this.selectedColumn == coli && this.selectedRows.includes(rowi))
+	 {
+	     this.selectedColumn = -1;
+	     this.selectedRows = [];
+	 }
+	 else if(this.selectedColumn == coli && !this.selectedRows.includes(rowi)
+		 || this.selectedColumn == -1)
+	 {
+	     if(this.cardCanBeSelected(coli, rowi))
+	     {
+		 this.selectedColumn = coli;
+		 this.selectedRows = [];
+		 for(let includedRow = rowi; includedRow < this.table[coli].length; includedRow++)
+		 {
+		     this.selectedRows.push(includedRow);
+		 }
+	     }
+	     else
+	     {
+		 this.selectedColumn = -1;
+		 this.selectedRows = [];
+	     }
+	 }
+     };
+
+     Game.prototype.cardCanBeSelected = function(coli, rowi)
+     {
+	 if(rowi == this.table[coli].length -1)
+	 {
+	     return true;
+	 }
+	 else
+	 {
+	     let [suit, value] = this.table[coli][rowi].split('');
+	     for(let nextRowi = rowi+1; nextRowi < this.table[coli].length; nextRowi++)
+	     {
+		 let [nextsuit, nextvalue] = this.table[coli][nextRowi].split('');
+		 if(suitColours[suit] == suitColours[nextsuit])
+		 {
+		     return false;
+		 }
+
+		 if(numbers.indexOf(value) - numbers.indexOf(nextvalue) != 1)
+		 {
+		     return false
+		 }
+
+		 suit = nextsuit;
+		 value = nextvalue;
+	     }
+	     return true;
+	 }
+     }
 
      return Game;
      

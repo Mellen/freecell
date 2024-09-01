@@ -34,11 +34,11 @@
 	</div>	
 	<template v-for="rowi in game.getLargestColumnCount()">
 	  <template v-for="coli in game.table.length">
-	    <div v-if="game.table[coli-1].length == 0 && rowi == 1" :class="'column'+coli+' freecell'">
-	      <img src="cards/blank.png" >
+	    <div v-if="game.table[coli-1].length == 0 && rowi == 1" :class="'card column'+coli+' freecell'">
+	      <img src="cards/blank.png" @click="game.selectDropClear(coli-1, rowi-1)" >
 	    </div>
 	    <div v-else-if="game.getCard(coli-1, rowi-1) != ''" :class="'card '+cardClass(coli-1, rowi-1)">
-	      <img :src="'cards/'+game.getCard(coli-1, rowi-1)+'.png'">
+	      <img :src="'cards/'+game.getCard(coli-1, rowi-1)+'.png'" @click="game.selectDropClear(coli-1, rowi-1)">
 	    </div>
 	  </template>
 	</template>
