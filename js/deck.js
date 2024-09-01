@@ -134,7 +134,16 @@ const Game = (function()
 		&& this.selectedColumn > -1
 		&& this.cardsCanBeDropped(coli))
 	     {
-		 
+		 let movingCards = [];
+		 while(movingCards.length < this.selectedRows.length)
+		 {
+		     movingCards.push(this.table[this.selectedColumn].pop());
+		 }
+
+		 while(movingCards.length > 0)
+		 {
+		     this.table[coli].push(movingCards.pop());
+		 }
 	     }
 
 	     this.selectedColumn = -1;
@@ -159,6 +168,8 @@ const Game = (function()
 	 {
 	     return false;
 	 }
+
+	 return true;
      }
 
      Game.prototype.cardCanBeSelected = function(coli, rowi)
