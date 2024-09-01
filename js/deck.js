@@ -140,6 +140,15 @@ const Game = (function()
 	     this.selectedColumn = -1;
 	     this.selectedRows = [];
 	 }
+	 else if(this.selectedFreecell != -1)
+	 {
+	     if(this.isDestinationSuitAndValueValid(this.freecells[this.selectedFreecell]), this.table[coli].at(-1))
+	     {
+		 this.table[coli].push(this.freecells[this.selectedFreecell]);
+		 this.freecells[this.selectedFreecell] = '';
+		 this.selectedFreecell = -1;
+	     }
+	 }
 	 else if(this.selectedColumn == coli && !this.selectedRows.includes(rowi)
 		 || this.selectedColumn == -1)
 	 {
@@ -174,12 +183,6 @@ const Game = (function()
 		 {
 		     this.table[coli].push(movingCards.pop());
 		 }
-	     }
-	     else if(this.selectedFreecell > -1
-		     && this.isDestinationSuitAndValueValid(this.freecells[this.selectedFreecell]), this.table[coli].at(-1))
-	     {
-		 this.table[coli].push(this.freecells[this.selectedFreecell]);
-		 this.freecells[this.selectedFreecell] = '';
 	     }
 
 	     this.selectedColumn = -1;
