@@ -65,6 +65,18 @@ const Game = (function()
 	 return count;
      };
 
+     Game.prototype.getCard = function(coli, rowi)
+     {
+	 let card = '';
+
+	 if(rowi < this.table[coli].length)
+	 {
+	     card = this.table[coli][rowi];
+	 }
+
+	 return card;
+     };
+     
      Game.prototype.isLastInColumn = function(cardi, rowi)
      {
 	 return (this.table[cardi].length - 1 == rowi);

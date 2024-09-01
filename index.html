@@ -33,12 +33,12 @@
 	  <img :src="getHome(3)">
 	</div>	
 	<template v-for="rowi in game.getLargestColumnCount()">
-	  <template v-for="cardi in game.table.length">
-	    <div v-if="game.table[cardi-1].length == 0" :class="'column'+cardi+' freecell'">
+	  <template v-for="coli in game.table.length">
+	    <div v-if="game.table[coli-1].length == 0" :class="'column'+coli+' freecell'">
 	      <img src="cards/blank.png" >
 	    </div>
-	    <div v-if-else="game.table[cardi-1][rowi] != ''" :class="'card '+cardClass(cardi-1, rowi-1)">
-	      <img :src="'cards/'+game.table[cardi-1][rowi]+'.png'">
+	    <div v-if-else="game.getCard(coli-1, rowi-1) != ''" :class="'card '+cardClass(coli-1, rowi-1)">
+	      <img :src="'cards/'+game.getCard(coli-1, rowi-1)+'.png'">
 	    </div>
 	  </template>
 	</template>
