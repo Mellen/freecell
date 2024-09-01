@@ -16,6 +16,7 @@ const Game = (function()
 	 this.moveHistory = [];
 	 this.freecells = ['','','',''];
 	 this.home = [[],[],[],[]]
+	 this.selectedFreecell = -1;
 	 this.selectedColumn = -1;
 	 this.selectedRows = [];
 	 let deck = suits.map(function(s)
@@ -103,6 +104,35 @@ const Game = (function()
 	 return result;
      };
 
+     Game.prototype.freecellSelected = function(cellIndex)
+     {
+	 return cellIndex == this.selectedFreecell;
+     };
+     
+     Game.prototype.selectDropFreecell = function(cellIndex)
+     {
+	 if(this.selectedFreecell == cellIndex)
+	 {
+	     this.selectedFreecell = -1;
+	 }
+	 else if(this.freecells[cellIndex] == '')
+	 {
+	     if(this.selectedColumn > -1 && this.selectedRows.length == 1)
+	     {
+		 this.freecells[cellIndex] = this.table[this.selectedColumn].pop();
+		 this.selectedColumn = -1;
+		 this.selectedRows = [];
+	     }
+	 }
+	 else
+	 {
+	     this.selectedFreecell = cellIndex;
+	     this.selectedColumn = -1;
+	     this.selectedRows = [];
+	 }
+	 
+     };
+
      Game.prototype.selectDropClear = function(coli, rowi)
      {
 	 if(this.selectedColumn == coli && this.selectedRows.includes(rowi))
@@ -145,6 +175,12 @@ const Game = (function()
 		     this.table[coli].push(movingCards.pop());
 		 }
 	     }
+	     else if(this.selectedFreecell > -1
+		     && this.isDestinationSuitAndValueValid(this.freecells[this.selectedFreecell]), this.table[coli].at(-1))
+	     {
+		 this.table[coli].push(this.freecells[this.selectedFreecell]);
+		 this.freecells[this.selectedFreecell] = '';
+	     }
 
 	     this.selectedColumn = -1;
 	     this.selectedRows = [];
@@ -165,18 +201,10 @@ const Game = (function()
 	     }
 	 }
 	 
-	 let destsuit = this.table[coli].at(-1)[0];
-	 let destvalue = this.table[coli].at(-1).substring(1);
+	 let destcard = this.table[coli].at(-1);
+	 let srccard = this.table[this.selectedColumn][this.selectedRows[0]];
 
-	 let srcsuit = this.table[this.selectedColumn][this.selectedRows[0]][0]
-	 let srcvalue = this.table[this.selectedColumn][this.selectedRows[0]].substring(1);
-
-	 if(suitColours[destsuit] == suitColours[srcsuit])
-	 {
-	     return false;
-	 }
-
-	 if(numbers.indexOf(destvalue) - numbers.indexOf(srcvalue) != 1)
+	 if(!this.isDestinationSuitAndValueValid(srccard, destcard))
 	 {
 	     return false;
 	 }
@@ -189,6 +217,27 @@ const Game = (function()
 	 return true;
      };
 
+     Game.prototype.isDestinationSuitAndValueValid(srcCard, destCard)
+     {
+ 	 let destsuit = destCard[0];
+	 let destvalue = destCard.substring(1);
+
+	 let srcsuit = srcCard[0]
+	 let srcvalue = srcCard.substring(1);
+
+	 if(suitColours[destsuit] == suitColours[srcsuit])
+	 {
+	     return false;
+	 }
+
+	 if(numbers.indexOf(destvalue) - numbers.indexOf(srcvalue) != 1)
+	 {
+	     return false;
+	 }
+
+	 return true;
+     }
+     
      Game.prototype.getMaxMovableStackLength = function(coli)
      {
 	 const freecellCount = this.freecells.reduce((acc,cell) => cell == '' ? acc+1:acc, 0);
