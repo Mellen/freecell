@@ -124,9 +124,9 @@ const Game = (function()
      Game.prototype.generateHistoryCandidate = function()
      {
 	 let history = {
-	     table: this.tables.reduce((tbl, col) => { tbl.push([...col]), return tbl;}, [])
+	     table: this.tables.reduce((tbl, col) => { tbl.push([...col]); return tbl; }, [])
 	     freecells: [...this.freecells],
-	     home: this.home.reduce((home, col) => { home.push([...col]), return home;}, [])
+	     home: this.home.reduce((home, col) => { home.push([...col]); return home; }, [])
 	 };
 	 return history;
      }
