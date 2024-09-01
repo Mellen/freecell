@@ -55,6 +55,17 @@ const Game = (function()
 	 
      }
 
+     Game.prototype.undo = function()
+     {
+	 if(this.moveHistory.length > 0)
+	 {
+	     let history = this.moveHistory.pop();
+	     this.table = history.table;
+	     this.home = history.home;
+	     this.freecells = history.freecells;
+	 }
+     }
+
      Game.prototype.getLargestColumnCount = function()
      {
 	 let count = 0;
@@ -110,8 +121,19 @@ const Game = (function()
 	 return cellIndex == this.selectedFreecell;
      };
 
+     Game.prototype.generateHistoryCandidate = function()
+     {
+	 let history = {
+	     table: this.tables.reduce((tbl, col) => { tbl.push([...col]), return tbl;}, [])
+	     freecells: [...this.freecells],
+	     home: this.home.reduce((home, col) => { home.push([...col]), return home;}, [])
+	 };
+	 return history;
+     }
+     
      Game.prototype.dropHome = function(cellIndex)
      {
+	 let history = this.generateHistoryCandidate();
 	 if(this.selectedRows.length == 1 && this.selectedColumn != -1)
 	 {
 	     const card = this.table[this.selectedColumn][this.selectedRows[0]];
@@ -132,6 +154,7 @@ const Game = (function()
 
 	     if(dropped)
 	     {
+		 this.moveHistory.push(history);
 		 this.checkWin();
 	     }
 	 }
@@ -148,6 +171,7 @@ const Game = (function()
      
      Game.prototype.selectDropFreecell = function(cellIndex)
      {
+	 let history = this.generateHistoryCandidate();
 	 if(this.selectedFreecell == cellIndex)
 	 {
 	     this.selectedFreecell = -1;
@@ -157,6 +181,7 @@ const Game = (function()
 	     if(this.selectedColumn > -1 && this.selectedRows.length == 1)
 	     {
 		 this.freecells[cellIndex] = this.table[this.selectedColumn].pop();
+		 this.moveHistory.push(history);
 		 this.selectedColumn = -1;
 		 this.selectedRows = [];
 	     }
@@ -172,6 +197,7 @@ const Game = (function()
 
      Game.prototype.selectDropClear = function(coli, rowi)
      {
+	 let history = this.generateHistoryCandidate();
 	 if(this.selectedColumn == coli && this.selectedRows.includes(rowi))
 	 {
 	     this.selectedColumn = -1;
@@ -182,6 +208,7 @@ const Game = (function()
 	     if(this.table[coli].length == 0 ||
 		this.isDestinationSuitAndValueValid(this.freecells[this.selectedFreecell], this.table[coli].at(-1)))
 	     {
+		 this.moveHistory.push(history);
 		 this.table[coli].push(this.freecells[this.selectedFreecell]);
 		 this.freecells[this.selectedFreecell] = '';
 		 this.selectedFreecell = -1;
@@ -192,6 +219,7 @@ const Game = (function()
 	 {
 	     if(this.cardCanBeSelected(coli, rowi))
 	     {
+		 this.moveHistory.push(history);
 		 this.selectedColumn = coli;
 		 this.selectedRows = [];
 		 for(let includedRow = rowi; includedRow < this.table[coli].length; includedRow++)
@@ -211,6 +239,7 @@ const Game = (function()
 		&& this.selectedColumn > -1
 		&& this.cardsCanBeDropped(coli))
 	     {
+		 this.moveHistory.push(history);
 		 let movingCards = [];
 		 while(movingCards.length < this.selectedRows.length)
 		 {

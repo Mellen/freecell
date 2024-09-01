@@ -3,6 +3,12 @@ body
     background-color:#007d1e;
 }
 
+#winners-panel
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 #card-grid
 {

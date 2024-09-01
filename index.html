@@ -43,6 +43,13 @@
 	  </template>
 	</template>
       </div>
+      <div>
+	<button @click="game.undo()">undo</button>
+      </div>
+      <div v-if="game.playerHasWon" id="winners-panel">
+	<h2>You have won!</h2>
+	<p><button click="location.reload()">New Game</button></p>
+      </div>
     </div>
     <script src="js/vue.global.js"></script>
     <script src="js/deck.js" type="text/javascript"></script>
