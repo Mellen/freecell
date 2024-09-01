@@ -7,6 +7,9 @@
   </head>
   <body>
     <div id="app">
+      <div>
+	<button @click="game.undo()">undo</button>
+      </div>
       <div id="card-grid">
 	<div :class="'column1 freecell ' + freecellExtraClasses(0)">
 	  <img :src="getFreecell(0)" @click="game.selectDropFreecell(0)">
@@ -42,9 +45,6 @@
 	    </div>
 	  </template>
 	</template>
-      </div>
-      <div>
-	<button @click="game.undo()">undo</button>
       </div>
       <div v-if="game.playerHasWon" id="winners-panel">
 	<h2>You have won!</h2>
