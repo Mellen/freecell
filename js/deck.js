@@ -138,10 +138,13 @@ const Game = (function()
 	 }
 	 else
 	 {
-	     let [suit, value] = this.table[coli][rowi].split('');
+	     let suit = this.table[coli][rowi][0];
+	     let value = this.table[coli][rowi].substring(1);
 	     for(let nextRowi = rowi+1; nextRowi < this.table[coli].length; nextRowi++)
 	     {
-		 let [nextsuit, nextvalue] = this.table[coli][nextRowi].split('');
+		 let nextsuit = this.table[coli][nextRowi][0];
+		 let nextvalue = this.table[coli][nextRowi].substring(1);
+
 		 if(suitColours[suit] == suitColours[nextsuit])
 		 {
 		     return false;
