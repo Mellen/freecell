@@ -115,6 +115,7 @@ const Game = (function()
 	 if(this.selectedRows.length == 1 && this.selectedColumn != -1)
 	 {
 	     const card = this.table[this.selectedColumn][this.selectedRows[0]];
+	     const homecard = this.home[cellIndex].at(-1);
 	     let dropped = false;
 	     if(this.home[cellIndex].length == 0 && card[1] == 'a')
 	     {
@@ -122,7 +123,8 @@ const Game = (function()
 		 dropped = true;
 	     }
 	     else if(this.home[cellIndex].length > 0 &&
-		     this.isDestinationSuitAndValueValid(card,this.home[cellIndex].at(-1)))
+		     card[0] == homecard[0] &&
+		     (number.indexOf(card.substring(1)) - number.indexOf(homecard.substring(1))) == 1)
 	     {
 		 this.home.cellIndex.push(this.table[this.selectedColumn].pop())
 		 dropped = true;
