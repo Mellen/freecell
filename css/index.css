@@ -16,6 +16,22 @@ body
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+#buttons
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#undo-container
+{
+    text-align: left;
+}
+
+#new-game-container
+{
+    test-align: right;
+}
+
 img
 {
     height: 100%;
@@ -34,7 +50,7 @@ div.freecell img
     border: 2px solid white;
 }
 
-div.freecell.column4
+div.middle
 {
     border-right: 2px solid grey;
     margin-right: 11%

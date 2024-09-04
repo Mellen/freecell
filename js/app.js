@@ -51,12 +51,17 @@ const app = createApp(
 		    return `cards/${game.home[index].at(-1)}.png`;
 		}
 	    }
+	    function newGame()
+	    {
+		location.reload();
+	    }
 	    return {
 		game,
 		cardClass,
 		getFreecell,
 		getHome,
-		freecellExtraClasses
+		freecellExtraClasses,
+		newGame
 	    };
 	}
 	
