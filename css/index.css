@@ -37,7 +37,8 @@ body
 #undo-container button, #new-game-container button
 {
     font-size: 2em;
-    border-radius: 2em;
+    border-radius: 1.65em;
+    padding:5px;
 }
 
 img
