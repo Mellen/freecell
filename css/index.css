@@ -28,6 +28,13 @@ body
     margin-top: 0;
 }
 
+#undo-container button
+{
+    font-size: 2em;
+    border-radius: 2em;
+    
+}
+
 #new-game-container
 {
     text-align: right;
