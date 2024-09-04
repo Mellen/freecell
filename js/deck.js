@@ -66,6 +66,7 @@ const Game = (function()
 	 }
 	 this.selectedRows = [];
 	 this.selectedColumn = -1;
+	 this.selectedFreecell = -1;
      }
 
      Game.prototype.getLargestColumnCount = function()
@@ -159,10 +160,38 @@ const Game = (function()
 		 this.moveHistory.push(history);
 		 this.checkWin();
 	     }
+	     
+	     this.selectedRows = [];
+	     this.selectedColumn = -1;
 	 }
+	 else if(this.selectedFreecell != -1)
+	 {
+	     const card = this.freecells[this.selectedFreecell];
+	     const homecard = this.home[cellIndex].at(-1);
+	     let dropped = false;
+	     if(this.home[cellIndex].length == 0 && card[1] == 'a')
+	     {
+		 this.home[cellIndex].push(card);
+		 this.freecells[this.selectedFreecell] = '';
+		 dropped = true;
+	     }
+	     else if(this.home[cellIndex].length > 0 &&
+		     card[0] == homecard[0] &&
+		     (numbers.indexOf(card.substring(1)) - numbers.indexOf(homecard.substring(1))) == 1)
+	     {
+		 this.home[cellIndex].push(card);
+		 this.freecells[this.selectedFreecell] = '';
+		 dropped = true;
+	     }
 
-	 this.selectedRows = [];
-	 this.selectedColumn = -1;
+	     if(dropped)
+	     {
+		 this.moveHistory.push(history);
+		 this.checkWin();
+	     }
+	     
+	     this.selectedFreecell = -1;
+	 }
      };
 
      Game.prototype.checkWin = function()

@@ -29,7 +29,7 @@ body
 
 #new-game-container
 {
-    test-align: right;
+    text-align: right;
 }
 
 img
@@ -56,7 +56,7 @@ div.middle
     margin-right: 11%
 }
 
-div.freecell.column4 img
+div.middle img
 {
     width: 86%;
 }
