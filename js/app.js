@@ -58,13 +58,47 @@ const app = createApp(
 		    location.reload();
 		}
 	    }
+	    function cardToCardName(card)
+	    {
+		let cardname = '';
+		const suit = card[0];
+		const value = card.substring(1);
+
+		const suits = {
+		    's': 'spades',
+		    'h': 'hearts',
+		    'd': 'diamonds',
+		    'c': 'clubs'
+		};
+
+		const values = {
+		    'a': 'ace',
+		    '2': 'two',
+		    '3': 'three',
+		    '4': 'four',
+		    '5': 'five',
+		    '6': 'six',
+		    '7': 'seven',
+		    '8': 'eight',
+		    '9': 'nine',
+		    '10': 'ten',
+		    'j': 'jack',
+		    'q': 'queen',
+		    'k': 'king'
+		};
+
+		cardname = `${values[value]} of ${suits[suit]}`;
+		
+		return cardname;
+	    }
 	    return {
 		game,
 		cardClass,
 		getFreecell,
 		getHome,
 		freecellExtraClasses,
-		newGame
+		newGame,
+		cardToCardName
 	    };
 	}
 	
