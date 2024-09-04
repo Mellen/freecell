@@ -53,7 +53,10 @@ const app = createApp(
 	    }
 	    function newGame()
 	    {
-		location.reload();
+		if(confirm('Start a new game?'))
+		{
+		    location.reload();
+		}
 	    }
 	    return {
 		game,
