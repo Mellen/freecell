@@ -25,11 +25,13 @@ body
 #undo-container
 {
     text-align: left;
+    margin-top: 0;
 }
 
 #new-game-container
 {
     text-align: right;
+    margin-top: 0;
 }
 
 img

@@ -63,6 +63,7 @@ const Game = (function()
 	     this.table = history.table;
 	     this.home = history.home;
 	     this.freecells = history.freecells;
+	     this.playerHasWon = false;
 	 }
 	 this.selectedRows = [];
 	 this.selectedColumn = -1;
