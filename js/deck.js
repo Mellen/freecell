@@ -147,10 +147,10 @@ const Game = (function()
 	 let safeSpade = '2';
 	 let safeClub = '2';
 
-	 let colHeart = 0;
-	 let colDiamond = 1;
-	 let colSpade = 2;
-	 let colClub = 3;
+	 let colHeart = -1;
+	 let colDiamond = -1;
+	 let colSpade = -1;
+	 let colClub = -1;
 	 
 	 for(let coli = 0; coli < this.home.length; coli++)
 	 {
@@ -163,6 +163,7 @@ const Game = (function()
 	     else
 	     {
 		 const value = col.at(-1).substring(1);
+		 let nextValue = 'a';
 		 if(value == 'k')
 		 {
 		     nextValue = 'k'
@@ -193,6 +194,33 @@ const Game = (function()
 		 }
 	     }
 	 }
+
+	 let usedIndices = [];
+	 
+	 if(colHeart == -1)
+	 {
+	     colHeart = this.findEmptyHomeCellIndex(usedIndices);
+	     usedIndices.push(colHeart);
+	 }
+
+	 if(colDiamond == -1)
+	 {
+	     colDiamond = this.findEmptyHomeCellIndex(usedIndices);
+	     usedIndices.push(colDiamond);
+	 }
+
+	 if(colSpade == -1)
+	 {
+	     colSpade = this.findEmptyHomeCellIndex(usedIndices);
+	     usedIndices.push(colSpade);
+	 }
+
+	 if(colClub == -1)
+	 {
+	     colClub = this.findEmptyHomeCellIndex(usedIndices);
+	     usedIndices.push(colClub);
+	 }
+
 	 if(nextHeart != 'a' && nextDiamond != 'a')
 	 {
 	     safeSpade = safeClub = numbers[Math.min(numbers.indexOf(nextHeart), numbers.indexOf(nextDiamond))];
@@ -265,6 +293,26 @@ const Game = (function()
 	 }
      };
 
+     Game.prototype.findEmptyHomeCellIndex = function(usedIndices)
+     {
+	 let index = -1;
+	 for(let coli = 0; coli < this.home.length; coli++)
+	 {
+	     if(usedIndices.includes(coli))
+	     {
+		 continue;
+	     }
+	     if(this.home[coli].length == 0)
+	     {
+		 index = coli;
+		 break;
+	     }
+	 }
+
+	 return index;
+     };
+     
+     
      Game.prototype.autoHomeWithCheck = function(homeColumn, tableColumn, value, nextValue, safeValue, isTableCard)
      {
 	 if(numbers.indexOf(value) == numbers.indexOf(nextValue) && numbers.indexOf(value) <= numbers.indexOf(safeValue))
@@ -385,6 +433,7 @@ const Game = (function()
 	 {
 	     this.selectedColumn = -1;
 	     this.selectedRows = [];
+	     this.autocomplete();
 	 }
 	 else if(this.selectedFreecell != -1)
 	 {
@@ -395,6 +444,7 @@ const Game = (function()
 		 this.table[coli].push(this.freecells[this.selectedFreecell]);
 		 this.freecells[this.selectedFreecell] = '';
 		 this.selectedFreecell = -1;
+		 this.autocomplete();
 	     }
 	 }
 	 else if(this.selectedColumn == coli && !this.selectedRows.includes(rowi)
@@ -432,12 +482,12 @@ const Game = (function()
 		 {
 		     this.table[coli].push(movingCards.pop());
 		 }
+		 this.autocomplete();
 	     }
 
 	     this.selectedColumn = -1;
 	     this.selectedRows = [];
 	 }
-	 this.autocomplete();
      };
 
      Game.prototype.cardsCanBeDropped = function(coli)
