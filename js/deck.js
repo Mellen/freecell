@@ -361,7 +361,7 @@ const Game = (function()
 	 }
 	 else if(this.freecells[cellIndex] == '')
 	 {
-	     if(this.selectedColumn > -1 && this.selectedRows.length == 1)
+	     if(this.selectedColumn > -1 && this.selectedRows.length == 1 && this.table[this.selectedColumn].length > 0)
 	     {
 		 this.freecells[cellIndex] = this.table[this.selectedColumn].pop();
 		 this.moveHistory.push(history);
