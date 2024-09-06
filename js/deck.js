@@ -133,6 +133,157 @@ const Game = (function()
 	     home: this.home.reduce((home, col) => { home.push([...col]); return home; }, [])
 	 };
 	 return history;
+     };
+
+     Game.prototype.autocomplete = function()
+     {
+	 let nextHeart = 'a';
+	 let nextDiamond = 'a';
+	 let nextSpade = 'a';
+	 let nextClub = 'a';
+
+	 let safeHeart = '2';
+	 let safeDiamond = '2';
+	 let safeSpade = '2';
+	 let safeClub = '2';
+
+	 let colHeart = 0;
+	 let colDiamond = 1;
+	 let colSpade = 2;
+	 let colClub = 3;
+	 
+	 for(let coli = 0; coli < this.home.length; coli++)
+	 {
+	     const col = this.home[coli];
+	     
+	     if(col.length == 0)
+	     {
+		 continue;
+	     }
+	     else
+	     {
+		 const value = col.at(-1).substring(1);
+		 if(value == 'k')
+		 {
+		     nextValue = 'k'
+		 }
+		 else
+		 {		     
+		     nextValue = numbers[numbers.indexOf(value)+1];
+		 }
+		 switch(col[0][0])
+		 {
+		     case 'h':
+		     colHeart = coli;
+		     nextHeart = nextValue;
+		     break;
+		     case 'd':
+		     colDiamond = coli;
+		     nextDiamond = nextValue;
+		     break;
+		     case 's':
+		     colSpade = coli;
+		     nextSpade = nextValue;
+		     break;
+		     case 'c':
+		     colClub = coli;
+		     nextClub = nextValue;
+		     break;
+
+		 }
+	     }
+	 }
+	 if(nextHeart != 'a' && nextDiamond != 'a')
+	 {
+	     safeSpade = safeClub = numbers[Math.min(numbers.indexOf(nextHeart), numbers.indexOf(nextDiamond))];
+	 }
+	 if(nextClub != 'a' && nextSpade != 'a')
+	 {
+	     safeHeart = safeDiamond = numbers[Math.min(numbers.indexOf(nextSpade), numbers.indexOf(nextClub))];
+	 }
+
+	 let movedToHome = false;
+	 for(let coli = 0; coli < this.table.length; coli++)
+	 {
+	     const col = this.table[coli];
+	     if(col.length == 0)
+	     {
+		 continue;
+	     }
+
+	     const suit = col.at(-1)[0];
+	     const value = col.at(-1).substring(1);
+
+	     switch(suit)
+	     {
+		 case 'h':
+		 movedToHome = this.autoHomeWithCheck(colHeart, coli, value, nextHeart, safeHeart, true);
+		 break;
+		 case 'd':
+		 movedToHome = this.autoHomeWithCheck(colDiamond, coli, value, nextDiamond, safeDiamond, true);
+		 break;
+		 case 's':
+		 movedToHome = this.autoHomeWithCheck(colSpade, coli, value, nextSpade, safeSpade, true);
+		 break;
+		 case 'c':
+		 movedToHome = this.autoHomeWithCheck(colClub, coli, value, nextClub, safeClub, true);
+		 break;
+	     }
+	 }
+
+	 for(let coli = 0; coli < this.freecells.length; coli++)
+	 {
+	     const card = this.freecells[coli];
+	     if(card == '')
+	     {
+		 continue;
+	     }
+
+	     const suit = card[0];
+	     const value = card.substring(1);
+
+	     switch(suit)
+	     {
+		 case 'h':
+		 movedToHome = this.autoHomeWithCheck(colHeart, coli, value, nextHeart, safeHeart, false);
+		 break;
+		 case 'd':
+		 movedToHome = this.autoHomeWithCheck(colDiamond, coli, value, nextDiamond, safeDiamond, false);
+		 break;
+		 case 's':
+		 movedToHome = this.autoHomeWithCheck(colSpade, coli, value, nextSpade, safeSpade, false);
+		 break;
+		 case 'c':
+		 movedToHome = this.autoHomeWithCheck(colClub, coli, value, nextClub, safeClub, false);
+		 break;
+	     }
+	 }
+	 
+	 if(movedToHome)
+	 {
+	     this.autocomplete();
+	 }
+     };
+
+     Game.prototype.autoHomeWithCheck = function(homeColumn, tableColumn, value, nextValue, safeValue, isTableCard)
+     {
+	 if(numbers.indexOf(value) == numbers.indexOf(nextValue) && numbers.indexOf(value) <= numbers.indexOf(safeValue))
+	 {
+	     const history = this.generateHistoryCandidate();
+	     this.moveHistory.push(history);
+	     if(isTableCard)
+	     {
+		 this.home[homeColumn].push(this.table[tableColumn].pop());
+	     }
+	     else
+	     {
+		 this.home[homeColumn].push(this.freecells[tableColumn]);
+		 this.freecells[tableColumn] = '';
+	     }
+	     this.checkWin();
+	     return true;
+	 }
+	 return false;
      }
      
      Game.prototype.dropHome = function(cellIndex)
@@ -224,7 +375,7 @@ const Game = (function()
 	     this.selectedColumn = -1;
 	     this.selectedRows = [];
 	 }
-	 
+	 this.autocomplete();
      };
 
      Game.prototype.selectDropClear = function(coli, rowi)
@@ -286,6 +437,7 @@ const Game = (function()
 	     this.selectedColumn = -1;
 	     this.selectedRows = [];
 	 }
+	 this.autocomplete();
      };
 
      Game.prototype.cardsCanBeDropped = function(coli)

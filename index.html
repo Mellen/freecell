@@ -17,28 +17,28 @@
       </div>
       <div id="card-grid">
 	<div :class="'column1 freecell ' + freecellExtraClasses(0)">
-	  <img :src="getFreecell(0)" @click="game.selectDropFreecell(0)">
+	  <img :alt="cardToCardName(game.freecells[0])" :src="getFreecell(0)" @click="game.selectDropFreecell(0)">
 	</div>
 	<div :class="'column2 freecell ' + freecellExtraClasses(1)">
-	  <img :src="getFreecell(1)" @click="game.selectDropFreecell(1)">
+	  <img :alt="cardToCardName(game.freecells[1])":src="getFreecell(1)" @click="game.selectDropFreecell(1)">
 	</div>
 	<div :class="'column3 freecell ' + freecellExtraClasses(2)">
-	  <img :src="getFreecell(2)" @click="game.selectDropFreecell(2)">
+	  <img :alt="cardToCardName(game.freecells[2])" :src="getFreecell(2)" @click="game.selectDropFreecell(2)">
 	</div>
 	<div :class="'middle column4 freecell ' + freecellExtraClasses(3)">
-	  <img :src="getFreecell(3)" @click="game.selectDropFreecell(3)">
+	  <img :alt="cardToCardName(game.freecells[3])" :src="getFreecell(3)" @click="game.selectDropFreecell(3)">
 	</div>
 	<div class="column5 freecell">
-	  <img :src="getHome(0)" @click="game.dropHome(0)">
+	  <img :alt="cardToCardName(game.home[0]?.at(-1))" :src="getHome(0)" @click="game.dropHome(0)">
 	</div>
 	<div class="column6 freecell">
-	  <img :src="getHome(1)" @click="game.dropHome(1)">
+	  <img :alt="cardToCardName(game.home[1]?.at(-1))" :src="getHome(1)" @click="game.dropHome(1)">
 	</div>
 	<div class="column7 freecell">
-	  <img :src="getHome(2)" @click="game.dropHome(2)">
+	  <img :alt="cardToCardName(game.home[2]?.at(-1))" :src="getHome(2)" @click="game.dropHome(2)">
 	</div>
 	<div class="column8 freecell">
-	  <img :src="getHome(3)" @click="game.dropHome(3)">
+	  <img :alt="cardToCardName(game.home[3]?.at(-1))" :src="getHome(3)" @click="game.dropHome(3)">
 	</div>	
 	<template v-for="rowi in game.getLargestColumnCount()">
 	  <template v-for="coli in game.table.length">

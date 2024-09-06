@@ -60,6 +60,10 @@ const app = createApp(
 	    }
 	    function cardToCardName(card)
 	    {
+		if(card == '' || !card)
+		{
+		    return 'empty';
+		}
 		let cardname = '';
 		const suit = card[0];
 		const value = card.substring(1);
