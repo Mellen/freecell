@@ -289,7 +289,7 @@ const Game = (function()
 	 
 	 if(movedToHome)
 	 {
-	     this.autocomplete();
+	     setTimeout(() => this.autocomplete(), 100);
 	 }
      };
 
