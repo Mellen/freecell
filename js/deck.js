@@ -327,6 +327,10 @@ const Game = (function()
 	     {
 		 this.home[homeColumn].push(this.freecells[tableColumn]);
 		 this.freecells[tableColumn] = '';
+		 if(this.selectedFreecell === tableColumn)
+		 {
+		     this.selectedFreecell = -1;
+		 }
 	     }
 	     this.checkWin();
 	     return true;
