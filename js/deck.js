@@ -559,7 +559,7 @@ const Game = (function()
 
 	     if(this.table[curColi].length == 0)
 	     {
-		 moveableLength += freecellCount;
+		 moveableLength += moveableLength;
 	     }
 	 }
 	 
