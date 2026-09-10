@@ -30,12 +30,14 @@ var cardImages = (function (exports) {
 	{
 	    cardContext.putImageData(background, 0, 0);
 	    cardContext.fillStyle = suit.colour;
-	    cardContext.font = '20px "sans serif"';
+	    const cornerFontHeight = 32;
+	    const margin = 5;
+	    cardContext.font = `${cornerFontHeight}px "sans serif"`;
 	    const cornerValueWidth = cardContext.measureText(value.toUpperCase()+suit.character).width;
-	    cardContext.fillText(value.toUpperCase()+suit.character, 5, 25);
-	    cardContext.fillText(value.toUpperCase()+suit.character, width-cornerValueWidth-5, 25);
-	    cardContext.fillText(value.toUpperCase()+suit.character, 5, height-5);
-	    cardContext.fillText(value.toUpperCase()+suit.character, width-cornerValueWidth-5, height-5);
+	    cardContext.fillText(value.toUpperCase()+suit.character, margin, cornerFontHeight+margin);
+	    cardContext.fillText(value.toUpperCase()+suit.character, width-cornerValueWidth-margin, cornerFontHeight+margin);
+	    cardContext.fillText(value.toUpperCase()+suit.character, margin, height-margin*2);
+	    cardContext.fillText(value.toUpperCase()+suit.character, width-cornerValueWidth-margin, height-margin*2);
 	    const fontHeight = 120;
 	    cardContext.font = `${fontHeight}px "sans serif"`;
 	    const valueWidth = cardContext.measureText(value.toUpperCase()).width;
