@@ -1,5 +1,10 @@
 const { createApp, ref, reactive } = Vue;
+const { cardBlobURLs } = cardImages;
 
+const wait = new Promise(r => setTimeout(r, 300));
+
+wait.then( v =>
+    {
 const app = createApp(
     {
 	setup()
@@ -33,22 +38,22 @@ const app = createApp(
 	    {
 		if(game.freecells[index] == '')
 		{
-		    return 'cards/blank.png';
+		    return cardToBlobURL('blank');
 		}
 		else
 		{
-		    return `cards/${game.freecells[index]}.png`;
+		    return cardToBlobURL(game.freecells[index]);
 		}
 	    }
 	    function getHome(index)
 	    {
 		if(game.home[index].length == 0)
 		{
-		    return 'cards/blank.png';
+		    return cardToBlobURL('blank');
 		}
 		else
 		{
-		    return `cards/${game.home[index].at(-1)}.png`;
+		    return cardToBlobURL(game.home[index].at(-1));
 		}
 	    }
 	    function newGame()
@@ -58,6 +63,17 @@ const app = createApp(
 		    location.reload();
 		}
 	    }
+
+	    function cardToBlobURL(card)
+	    {
+		if(card in cardBlobURLs)
+		{
+		    return cardBlobURLs[card];
+		}
+
+		return cardBlobURLs['blank'];
+	    }
+	    
 	    function cardToCardName(card)
 	    {
 		if(card == '' || !card)
@@ -102,9 +118,11 @@ const app = createApp(
 		getHome,
 		freecellExtraClasses,
 		newGame,
-		cardToCardName
+		cardToCardName,
+		cardToBlobURL
 	    };
 	}
 	
     }).mount('#app');
 
+    });
